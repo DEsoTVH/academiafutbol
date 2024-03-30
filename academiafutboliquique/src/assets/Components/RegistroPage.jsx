@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const RegistroPage = () => {
@@ -12,34 +12,26 @@ const RegistroPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Registrar el padre
       const responsePadre = await axios.post("/api/padres", {
         nombres: nombresPadre,
         apellidos: apellidosPadre,
-        // Otros campos para el padre
       });
       const idPadre = responsePadre.data.id;
 
-      // Registrar el alumno asociándolo al padre registrado
       const responseAlumno = await axios.post("/api/alumnos", {
         nombres: nombresAlumno,
         apellidos: apellidosAlumno,
         id_padre: idPadre,
-        // Otros campos para el alumno
       });
 
-      // Registrar el usuario con el correo electrónico y contraseña proporcionados
       const responseUsuario = await axios.post("/api/usuarios", {
-        nombre: nombresAlumno, // Puedes usar el nombre del alumno como nombre de usuario
+        nombre: nombresAlumno,
         correo_electronico: correoElectronico,
         contrasena: contrasena,
-        tipo_usuario: "estudiante_padre", // Asigna el tipo de usuario apropiado
+        tipo_usuario: "estudiante_padre",
       });
-
-      // Redirigir a la página de inicio de sesión o mostrar un mensaje de éxito
     } catch (error) {
       console.error("Error al registrar:", error);
-      // Manejar errores de registro (por ejemplo, mostrar un mensaje de error al usuario)
     }
   };
 
@@ -47,7 +39,6 @@ const RegistroPage = () => {
     <div>
       <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
-        {/* Campos para el padre */}
         <input
           type="text"
           value={nombresPadre}
@@ -62,8 +53,6 @@ const RegistroPage = () => {
           placeholder="Apellidos del padre"
           required
         />
-        {/* Otros campos para el padre */}
-        {/* Campos para el alumno */}
         <input
           type="text"
           value={nombresAlumno}
@@ -78,8 +67,6 @@ const RegistroPage = () => {
           placeholder="Apellidos del alumno"
           required
         />
-        {/* Otros campos para el alumno */}
-        {/* Campos para el usuario */}
         <input
           type="email"
           value={correoElectronico}
