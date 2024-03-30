@@ -1,7 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const { verificarCredenciales } = require("./authUtils");
+import express from "express";
+import { verificarCredenciales } from "./authUtils";
+import cors from "cors";
+import { json } from "body-parser";
 
 const app = express();
 const PORT = 3000;
@@ -10,7 +10,7 @@ const PORT = 3000;
 app.use(cors());
 
 // Middleware para procesar datos JSON en las solicitudes
-app.use(bodyParser.json());
+app.use(json());
 
 // Ruta POST para manejar solicitudes de inicio de sesión
 app.post("/login", async (req, res) => {

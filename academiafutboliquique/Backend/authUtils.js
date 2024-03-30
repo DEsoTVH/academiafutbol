@@ -1,6 +1,6 @@
-const pool = require("./dbConfig");
+import pool from "./dbConfig";
 
-const verificarCredenciales = async (correoElectronico, contrasena) => {
+export const verificarCredenciales = async (correoElectronico, contrasena) => {
   try {
     const query =
       "SELECT * FROM Usuarios WHERE correo_electronico = $1 AND contrasena = $2 AND (tipo_usuario = 'admin' OR tipo_usuario = 'alumno_padre')";
@@ -13,4 +13,4 @@ const verificarCredenciales = async (correoElectronico, contrasena) => {
   }
 };
 
-module.exports = { verificarCredenciales };
+export default { verificarCredenciales };

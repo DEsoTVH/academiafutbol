@@ -1,4 +1,4 @@
-const { verificarCredenciales } = require("./authUtils");
+import { verificarCredenciales } from "./authUtils";
 
 const handleSubmit = async (req, res) => {
   const { correoElectronico, contrasena } = req.body;
@@ -20,4 +20,4 @@ const handleSubmit = async (req, res) => {
   }
 };
 
-module.exports = { handleSubmit };
+export default { handleSubmit };
